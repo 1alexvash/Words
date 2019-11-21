@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/Words/static/css/main.c00120fc.chunk.css",
+    "main.js": "/Words/static/js/main.8b4109dd.chunk.js",
+    "main.js.map": "/Words/static/js/main.8b4109dd.chunk.js.map",
+    "runtime-main.js": "/Words/static/js/runtime-main.9041b32c.js",
+    "runtime-main.js.map": "/Words/static/js/runtime-main.9041b32c.js.map",
+    "static/js/2.216d6d8b.chunk.js": "/Words/static/js/2.216d6d8b.chunk.js",
+    "static/js/2.216d6d8b.chunk.js.map": "/Words/static/js/2.216d6d8b.chunk.js.map",
+    "index.html": "/Words/index.html",
+    "precache-manifest.ff298b07acf0dd63b0f2403abbc3a556.js": "/Words/precache-manifest.ff298b07acf0dd63b0f2403abbc3a556.js",
+    "service-worker.js": "/Words/service-worker.js",
+    "static/css/main.c00120fc.chunk.css.map": "/Words/static/css/main.c00120fc.chunk.css.map",
+    "static/media/return.png": "/Words/static/media/return.d61c552e.png",
+    "static/media/sound_failure.mp3": "/Words/static/media/sound_failure.7768c1d0.mp3",
+    "static/media/sound_success.mp3": "/Words/static/media/sound_success.dcbb5b43.mp3"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9041b32c.js",
+    "static/js/2.216d6d8b.chunk.js",
+    "static/css/main.c00120fc.chunk.css",
+    "static/js/main.8b4109dd.chunk.js"
+  ]
+}
