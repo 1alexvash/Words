@@ -1,0 +1,12 @@
+@mixin responsive($width: "", $height: "") {
+  @if $width != "" {
+    @media (max-width: $width) {
+      @content;
+    }
+  }
+  @if $height != "" {
+    @media (max-height: $height) {
+      @content;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.App.dark {
+  background: #333;
+  color: white;
+  .game {
+    border: 2px solid #aaa;
+    .tip,
+    .skip {
+      color: white;
+      &:hover {
+        border-color: white;
+      }
+    }
+  }
+  .difficulty {
+    button {
+      color: white;
+      background: linear-gradient(grey, #333);
+    }
+  }
+}

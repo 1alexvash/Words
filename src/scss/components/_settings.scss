@@ -1,0 +1,50 @@
+.settings {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px;
+  @include responsive(960px) {
+    top: initial;
+    bottom: 0;
+    left: 0;
+  }
+  @include responsive(0, 480px) {
+    display: none;
+  }
+  label {
+    cursor: pointer;
+  }
+  input {
+    display: none;
+  }
+
+  //  Slider
+  .slider {
+    position: relative;
+    display: inline-block;
+    width: 56px;
+    height: 30px;
+    background-color: #ccc;
+    transition: 0.4s;
+    margin-left: 15px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+  }
+
+  input:checked + .slider {
+    background-color: #2196f3;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+}
