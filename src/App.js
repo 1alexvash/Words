@@ -1,7 +1,3 @@
-// Fix issue with Game component
-// Add preloader
-// Publish
-
 import React, { useState, useEffect, useRef } from "react";
 import successSoundUrl from "./sounds/sound_success.mp3";
 import failureSoundUrl from "./sounds/sound_failure.mp3";
@@ -134,7 +130,7 @@ const App = () => {
 
   return (
     <div className={`App ${darkMode ? "dark" : ""}`}>
-      {/* <Preloader /> */}
+      <Preloader />
       {difficulty === 0 ? (
         <div className="difficulty">
           <h1>Choose difficulty:</h1>
