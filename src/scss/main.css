@@ -75,14 +75,155 @@ input {
   }
 }
 
-.App .difficulty h1 {
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 1;
+  -webkit-animation: Preloader 5s ease-in-out;
+          animation: Preloader 5s ease-in-out;
+}
+
+@-webkit-keyframes Preloader {
+  from {
+    background: black;
+  }
+  25% {
+    background: #333;
+  }
+  50% {
+    background: black;
+  }
+  75% {
+    background: #333;
+  }
+  to {
+    background: black;
+  }
+}
+
+@keyframes Preloader {
+  from {
+    background: black;
+  }
+  25% {
+    background: #333;
+  }
+  50% {
+    background: black;
+  }
+  75% {
+    background: #333;
+  }
+  to {
+    background: black;
+  }
+}
+
+.preloader .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.preloader .content .text .title {
+  font-family: cursive;
+  font-size: 60px;
+  -webkit-animation: PreloaderContentText 5s ease-in-out;
+          animation: PreloaderContentText 5s ease-in-out;
+}
+
+@-webkit-keyframes PreloaderContentText {
+  from {
+    font-size: 48px;
+  }
+  to {
+    font-size: 60px;
+  }
+}
+
+@keyframes PreloaderContentText {
+  from {
+    font-size: 48px;
+  }
+  to {
+    font-size: 60px;
+  }
+}
+
+.preloader .content .text .loading {
+  text-align: center;
+  font-size: 16px;
+}
+
+.preloader .content .text .loading .dots {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.preloader .content .text .loading .dots .dot {
+  -webkit-animation: showHideDot 2.5s ease-in-out infinite;
+          animation: showHideDot 2.5s ease-in-out infinite;
+}
+
+.preloader .content .text .loading .dots .dot.dot-one {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+
+.preloader .content .text .loading .dots .dot.dot-two {
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+}
+
+.preloader .content .text .loading .dots .dot.dot-three {
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+}
+
+@-webkit-keyframes showHideDot {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes showHideDot {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.difficulty h1 {
   font-size: 36px;
   font-weight: normal;
   text-align: center;
   margin-bottom: 20px;
 }
 
-.App .difficulty button {
+.difficulty button {
   cursor: pointer;
   position: relative;
   display: block;
@@ -96,7 +237,7 @@ input {
   transition: 0.3s;
 }
 
-.App .difficulty button:after {
+.difficulty button:after {
   content: "";
   position: absolute;
   top: 50%;
@@ -112,38 +253,38 @@ input {
   transition: 0.3s;
 }
 
-.App .difficulty button:hover {
+.difficulty button:hover {
   border-color: white;
 }
 
-.App .difficulty button:hover:after {
+.difficulty button:hover:after {
   background: lightgreen;
 }
 
-.App .game {
+.game {
   position: relative;
   border: 2px solid black;
 }
 
 @media (max-width: 768px) {
-  .App .game {
+  .game {
     border-color: transparent !important;
   }
 }
 
-.App .game button {
+.game button {
   cursor: pointer;
   background: none;
 }
 
-.App .game .return {
+.game .return {
   outline: none;
   position: absolute;
   top: 5px;
   right: 5px;
 }
 
-.App .game .return img {
+.game .return img {
   padding: 4px;
   width: 36px;
   -webkit-transition: 0.3s;
@@ -152,13 +293,13 @@ input {
           transform: rotate(-225deg);
 }
 
-.App .game .return img:hover {
+.game .return img:hover {
   width: 40px;
   -webkit-transform: rotate(-180deg);
           transform: rotate(-180deg);
 }
 
-.App .game .tip {
+.game .tip {
   float: left;
   display: block;
   -webkit-transition: 0.3s;
@@ -166,11 +307,11 @@ input {
   border-bottom: 2px solid transparent;
 }
 
-.App .game .tip:hover {
+.game .tip:hover {
   border-color: black;
 }
 
-.App .game .skip {
+.game .skip {
   float: right;
   display: block;
   margin: 0 0 0 auto;
@@ -179,27 +320,72 @@ input {
   border-bottom: 2px solid transparent;
 }
 
-.App .game .skip:hover {
+.game .skip:hover {
   border-color: black;
 }
 
-.App .game .mixed-word {
+.game .mixed-word {
   text-align: center;
   font-weight: bold;
   font-size: 24px;
 }
 
-.App .game .mixed-word .mixed-word-tip {
+.game .mixed-word .mixed-word-tip {
   color: lightgreen;
 }
 
-.App .game form input {
+.game form input {
   margin-top: 16px;
   padding: 8px 16px;
   border: 2px solid black;
 }
 
-.App .settings {
+.score {
+  width: 480px;
+  margin: auto;
+  margin-top: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 640px) {
+  .score {
+    width: 100%;
+    padding: 0 25px;
+    margin-top: 0;
+  }
+}
+
+.score .progress {
+  width: 100%;
+  height: 10px;
+  background: #000;
+}
+
+.score .progress .bar {
+  width: 0;
+  height: 100%;
+  background: lightgreen;
+  -webkit-transition: 2s;
+  transition: 2s;
+}
+
+.score .points {
+  text-align: center;
+}
+
+.score .points .icon {
+  width: 64px;
+}
+
+.settings {
   position: absolute;
   top: 0;
   right: 0;
@@ -207,7 +393,7 @@ input {
 }
 
 @media (max-width: 960px) {
-  .App .settings {
+  .settings {
     top: initial;
     bottom: 0;
     left: 0;
@@ -215,26 +401,26 @@ input {
 }
 
 @media (max-width: 0) {
-  .App .settings {
+  .settings {
     display: none;
   }
 }
 
 @media (max-height: 480px) {
-  .App .settings {
+  .settings {
     display: none;
   }
 }
 
-.App .settings label {
+.settings label {
   cursor: pointer;
 }
 
-.App .settings input {
+.settings input {
   display: none;
 }
 
-.App .settings .slider {
+.settings .slider {
   position: relative;
   display: inline-block;
   width: 56px;
@@ -245,7 +431,7 @@ input {
   margin-left: 15px;
 }
 
-.App .settings .slider:before {
+.settings .slider:before {
   position: absolute;
   content: "";
   height: 22px;
@@ -257,11 +443,11 @@ input {
   transition: 0.4s;
 }
 
-.App .settings input:checked + .slider {
+.settings input:checked + .slider {
   background-color: #2196f3;
 }
 
-.App .settings input:checked + .slider:before {
+.settings input:checked + .slider:before {
   -webkit-transform: translateX(26px);
           transform: translateX(26px);
 }

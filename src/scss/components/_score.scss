@@ -1,0 +1,30 @@
+.score {
+  width: 480px;
+  margin: auto;
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include responsive(640px) {
+    width: 100%;
+    padding: 0 25px;
+    margin-top: 0;
+  }
+  .progress {
+    width: 100%;
+    height: 10px;
+    background: #000;
+    .bar {
+      width: 0;
+      height: 100%;
+      background: lightgreen;
+      transition: 2s;
+    }
+  }
+  .points {
+    text-align: center;
+    .icon {
+      width: 64px;
+    }
+  }
+}

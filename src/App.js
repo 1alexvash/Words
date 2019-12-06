@@ -1,17 +1,29 @@
-import React, { useState, useEffect } from "react";
+// Fix issue with Game component
+// Add preloader
+// Publish
+
+import React, { useState, useEffect, useRef } from "react";
 import successSoundUrl from "./sounds/sound_success.mp3";
 import failureSoundUrl from "./sounds/sound_failure.mp3";
+
+import Preloader from "./components/Preloader";
+import Score from "./components/Score";
+import Settings from "./components/Settings";
+
+import returnIcon from "./img/return.png";
 
 import "./scss/main.css";
 
 import words from "./words.json";
 
-import returnIcon from "./img/return.png";
-
 const successSound = new Audio(successSoundUrl);
 const failureSound = new Audio(failureSoundUrl);
 
+const gameLevels = [0, 10, 25, 50, 80, 125, 200, 300, 500, 1000];
+
 const App = () => {
+  const [gameLevel, setGameLevel] = useState(0);
+  const [score, setScore] = useState(0);
   const [darkMode, setDarkMode] = useState(true);
   const [soundsAvailable, setSoundsAvailabilitty] = useState(true);
   const [difficulty, setDifficulty] = useState(0);
@@ -23,6 +35,31 @@ const App = () => {
     setDifficulty(difficulty);
   }
 
+  const isFirstRun = useRef(true);
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+
+      if (localStorage.score !== undefined) {
+        const newScore = parseInt(localStorage.score);
+        setScore(newScore);
+        console.log("let's set up score from the local storage");
+      } else {
+        console.log("local storage is not defined");
+      }
+    } else {
+      localStorage.score = score;
+    }
+
+    gameLevels.forEach((level, index) => {
+      if (score >= level) {
+        setGameLevel(index);
+      }
+    });
+
+    // eslint-disable-next-line
+  }, [score]);
+
   useEffect(() => {
     if (difficulty > 0) {
       getRandomWord();
@@ -30,10 +67,10 @@ const App = () => {
   }, [difficulty]); // eslint-disable-line
 
   function getRandomWord() {
-    const levels = [0, 100, 500, 1000, 2000, 5000];
+    const listOfWords = [0, 100, 500, 1000, 2000, 5000];
 
-    const min = levels[difficulty - 1];
-    const max = levels[difficulty] - min;
+    const min = listOfWords[difficulty - 1];
+    const max = listOfWords[difficulty] - min;
 
     const randomWord = words[min + Math.floor(Math.random() * max)];
     setMixedWordBeforeTip("");
@@ -65,11 +102,13 @@ const App = () => {
         randomWord[randomWord.length - mixedWordAfterTip.length];
       setMixedWordBeforeTip(mixedWordBeforeTip + tipLetter);
       setMixedWordAfterTip(mixedWordAfterTip.replace(tipLetter, ""));
+      setScore(score - 2);
     }
   }
 
   function skipWord() {
     getRandomWord();
+    setScore(score - 1);
   }
 
   function handleSubmit(e) {
@@ -79,8 +118,10 @@ const App = () => {
       getRandomWord();
       e.target.text.value = "";
       playSound(successSound);
+      setScore(score + 1 + 2 * difficulty);
     } else {
       playSound(failureSound);
+      setScore(score - 1);
     }
   }
 
@@ -93,6 +134,7 @@ const App = () => {
 
   return (
     <div className={`App ${darkMode ? "dark" : ""}`}>
+      {/* <Preloader /> */}
       {difficulty === 0 ? (
         <div className="difficulty">
           <h1>Choose difficulty:</h1>
@@ -140,42 +182,15 @@ const App = () => {
           </form>
         </div>
       )}
-
-      <div className="settings">
-        <label htmlFor="dark-mode">
-          <p>Dark Mode</p>
-          <input
-            onChange={e => setDarkMode(e.target.checked)}
-            checked={darkMode}
-            type="checkbox"
-            name="dark-mode"
-            id="dark-mode"
-          />
-          <span className="slider"></span>
-        </label>
-        <label htmlFor="turn-on-sound">
-          <p>Sound</p>
-          <input
-            onChange={e => setSoundsAvailabilitty(e.target.checked)}
-            checked={soundsAvailable}
-            type="checkbox"
-            name="turn-on-sound"
-            id="turn-on-sound"
-          />
-          <span className="slider"></span>
-        </label>
-      </div>
+      <Score gameLevel={gameLevel} gameLevels={gameLevels} score={score} />
+      <Settings
+        setDarkMode={setDarkMode}
+        darkMode={darkMode}
+        setSoundsAvailabilitty={setSoundsAvailabilitty}
+        soundsAvailable={soundsAvailable}
+      />
     </div>
   );
 };
 
 export default App;
-
-/*
-  THINGS TO DO
-  Publish go github
-  Publish to gh-pages
-  Add some kind of preloader
-  Come up with some scoring system
-  Add some scoring system - maybe
-*/

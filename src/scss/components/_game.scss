@@ -1,0 +1,61 @@
+.game {
+  position: relative;
+  border: 2px solid black;
+  @include responsive(768px) {
+    border-color: transparent !important;
+  }
+  button {
+    cursor: pointer;
+    background: none;
+  }
+  .return {
+    outline: none;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    img {
+      padding: 4px;
+      width: 36px;
+      transition: 0.3s;
+      transform: rotate(-225deg);
+      &:hover {
+        width: 40px;
+        transform: rotate(-180deg);
+      }
+    }
+  }
+  .tip {
+    float: left;
+    display: block;
+    transition: 0.3s;
+    border-bottom: 2px solid transparent;
+    &:hover {
+      border-color: black;
+    }
+  }
+  .skip {
+    float: right;
+    display: block;
+    margin: 0 0 0 auto;
+    transition: 0.3s;
+    border-bottom: 2px solid transparent;
+    &:hover {
+      border-color: black;
+    }
+  }
+  .mixed-word {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    .mixed-word-tip {
+      color: lightgreen;
+    }
+  }
+  form {
+    input {
+      margin-top: 16px;
+      padding: 8px 16px;
+      border: 2px solid black;
+    }
+  }
+}
