@@ -121,8 +121,6 @@ const App = () => {
   }
 
   function updateScore(diff) {
-    console.log(`Score ${score} and diff ${diff}`);
-
     if (diff + score <= 0) {
       setScore(0);
     } else if (diff + score >= 1000) {

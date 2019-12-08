@@ -8,7 +8,7 @@ const Settings = ({
 }) => {
   return (
     <div className="settings">
-      <label htmlFor="dark-mode">
+      <label className="dark-mode" htmlFor="dark-mode">
         <p>Dark Mode</p>
         <input
           onChange={e => setDarkMode(e.target.checked)}
@@ -19,7 +19,7 @@ const Settings = ({
         />
         <span className="slider"></span>
       </label>
-      <label htmlFor="turn-on-sound">
+      <label className="sound" htmlFor="turn-on-sound">
         <p>Sound</p>
         <input
           onChange={e => setSoundsAvailabilitty(e.target.checked)}

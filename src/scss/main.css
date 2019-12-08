@@ -385,13 +385,6 @@ input {
   width: 64px;
 }
 
-.settings {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 15px;
-}
-
 @media (max-width: 960px) {
   .settings {
     top: initial;
@@ -414,6 +407,20 @@ input {
 
 .settings label {
   cursor: pointer;
+  padding: 15px;
+}
+
+.settings label.dark-mode {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.settings label.sound {
+  text-align: right;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .settings input {
