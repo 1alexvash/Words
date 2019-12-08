@@ -39,9 +39,6 @@ const App = () => {
       if (localStorage.score !== undefined) {
         const newScore = parseInt(localStorage.score);
         setScore(newScore);
-        console.log("let's set up score from the local storage");
-      } else {
-        console.log("local storage is not defined");
       }
     } else {
       localStorage.score = score;
@@ -98,26 +95,40 @@ const App = () => {
         randomWord[randomWord.length - mixedWordAfterTip.length];
       setMixedWordBeforeTip(mixedWordBeforeTip + tipLetter);
       setMixedWordAfterTip(mixedWordAfterTip.replace(tipLetter, ""));
-      setScore(score - 2);
+      updateScore(-2);
     }
   }
 
   function skipWord() {
     getRandomWord();
-    setScore(score - 1);
+    updateScore(-1);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (e.target.text.value.toLowerCase() === randomWord.toLowerCase()) {
-      getRandomWord();
-      e.target.text.value = "";
-      playSound(successSound);
-      setScore(score + 1 + 2 * difficulty);
+    if (e.target.text.value !== "") {
+      if (e.target.text.value.toLowerCase() === randomWord.toLowerCase()) {
+        getRandomWord();
+        e.target.text.value = "";
+        playSound(successSound);
+        updateScore(1 + 2 * difficulty);
+      } else {
+        playSound(failureSound);
+        updateScore(-1);
+      }
+    }
+  }
+
+  function updateScore(diff) {
+    console.log(`Score ${score} and diff ${diff}`);
+
+    if (diff + score <= 0) {
+      setScore(0);
+    } else if (diff + score >= 1000) {
+      setScore(1000);
     } else {
-      playSound(failureSound);
-      setScore(score - 1);
+      setScore(score + diff);
     }
   }
 
